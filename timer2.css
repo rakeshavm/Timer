@@ -1,0 +1,80 @@
+#container {
+	margin: 20px auto;
+	/*width: 50%;*/
+	max-width: 600px;
+	min-width: 400px;
+	text-align: center;
+	align-content: center;
+
+}
+h1 {
+	text-align: center;
+	line-height: 1.1;
+	font-weight: normal;
+	color: black;
+	margin: 0;
+	text-transform: uppercase;
+	padding: 20px 0;
+}
+/*input{
+	align-content: center;
+}*/
+/*#sec{
+	width: 25%;
+	float: left;
+	margin: 0 1.5%;
+}
+#min{
+	width: 25%;
+	float: left;
+	margin: 0 1.5%;
+}
+.div1{
+	height: 50px;
+}*/
+/*#hour{
+	width: 25%;
+	float: left;
+	margin: 0 1.5%;
+}
+.sp{
+	display: inline-block;
+	width: 5%;
+	float: left;
+	height: 34px;
+	font-size: 14px;
+	padding: 6px 0;
+}*/
+/*.timer{
+	align-content: center;
+}*/
+.disp{
+	float: left;
+	width: 10%;
+	/*align-content: center;*/
+	text-align: center;
+    display: inherit;
+	/*margin-left: 25%;
+	margin-right: 5%;*/
+	background: #DCDCDC;
+}
+#minspan{
+	margin:0 4.16%;
+}
+#hrspan{
+	margin:0 4.16%;
+}
+#dayspan{
+	margin:0 4.16%;
+}
+#secspan{
+	margin:0 4.16%;
+}
+#btn{
+	margin-bottom: 30px;
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;	
+	width: 30%;
+	display: inherit;	
+}
