@@ -1,38 +1,57 @@
-var fun = (function(){
-	var daydisp = document.querySelector("#dayspan");
-	var hrdisp = document.querySelector("#hrspan");
-	var mindisp = document.querySelector("#minspan");
-	var secdisp = document.querySelector("#secspan");
-	var API = {
-		remtime : function remtime(endtime){
-		  	var t = Date.parse(endtime) - Date.parse(new Date());
-		  	var seconds = Math.floor((t/1000) % 60);
-		  	var minutes = Math.floor((t/1000/60) % 60);
-		  	var hours = Math.floor((t/(1000*60*60)) % 24);
-		  	var days = Math.floor(t/(1000*60*60*24));
-		  	return {
-		    'total': t,
-		    'days': days,
-		    'hours': hours,
-		    'minutes': minutes,
-		    'seconds': seconds
-		  };
-		},
-		display : function displayClock(endtime){
-			  function updateClock(){
-			  var t = API.remtime(endtime);
-			  daydisp.innerHTML = t.days + "<br> days";
-			  hrdisp.innerHTML = t.hours + "<br> hours";
-			  mindisp.innerHTML = t.minutes + "<br> min";
-			  secdisp.innerHTML = t.seconds + "<br> sec";
-			  if(t.total<=0){
-			    clearInterval(timeinterval);
-			  }
-			}
-			updateClock(); 
-			var timeinterval = setInterval(updateClock,1000);
+var TIMER= (function () {
+	var daydisp, hrdisp, mindisp, secdisp;
+	var current, destination,t;
+	var timer;
+
+	function sel(d) {
+		return document.querySelector(d);
+	}
+
+	function doMath() {
+		return {
+			seconds: Math.floor((t / 1000) % 60),
+			minutes: Math.floor((t / 1000 / 60) % 60),
+			hours: Math.floor((t / (1000 * 60 * 60)) % 24),
+			days: Math.floor(t / (1000 * 60 * 60 * 24))
 		}
 	}
-	return API;
+
+	function render(genesis){
+		 daydisp.innerHTML=genesis.days+ "<br> days";
+		 hrdisp.innerHTML = genesis.hours + "<br> hours";
+		 mindisp.innerHTML = genesis.minutes + "<br> min";
+		 secdisp.innerHTML = genesis.seconds + "<br> sec";
+	}
+
+	function updateClock(){
+		if(!(t>0)){
+			 clearInterval(timer);
+			 return ;
+		}
+	 t-=1000;
+	 render(doMath());
+	}
+
+	function getCurrentTime() {
+		return new Date();
+	}
+
+
+	function init(date, day, hour, min, sec) {
+		daydisp = sel(day);
+		hrdisp = sel(hour);
+		mindisp = sel(min);
+		secdisp = sel(sec);
+		destination = date;
+		current = getCurrentTime();
+		t = destination - current;
+		timer = setInterval(updateClock, 1000);
+
+	}
+
+
+	return {
+		initialize: init
+	}
 })();
-fun.display('January 15 2019 GMT+0530');
+TIMER.initialize(new Date(2019,2,7),"#dayspan","#hrspan","#minspan","#secspan");
